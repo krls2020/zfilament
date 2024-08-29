@@ -25,6 +25,10 @@ zerops:
       os: alpine
       siteConfigPath: site.conf.tmpl
       envVariables:
+        APP_NAME: ZeropsFilament
+        APP_DEBUG: true
+        APP_ENV: production
+        APP_KEY: <@generateRandomString(<32>)>
         APP_LOCALE: en
         APP_FAKER_LOCALE: en_US
         APP_FALLBACK_LOCALE: en
@@ -39,6 +43,8 @@ zerops:
         DB_PASSWORD: ${db_password}
         DB_PORT: 5432
         DB_USERNAME: ${db_user}
+        database:
+          default:
 
         LOG_CHANNEL: syslog
         LOG_LEVEL: debug
