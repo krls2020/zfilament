@@ -1,3 +1,4 @@
+#yamlPreprocessor=on
 zerops:
   - setup: app
     build:
@@ -28,7 +29,7 @@ zerops:
         APP_NAME: ZeropsFilament
         APP_DEBUG: true
         APP_ENV: production
-        APP_KEY: @generateRandomString(<32>)
+        APP_KEY: <@generateRandomString(<32>)>
         APP_LOCALE: en
         APP_FAKER_LOCALE: en_US
         APP_FALLBACK_LOCALE: en
