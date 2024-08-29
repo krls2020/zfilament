@@ -72,7 +72,7 @@ zerops:
 #        - php artisan migrate --isolated --force
 #        - php artisan db:seed
 #        - php artisan optimize
-      healthCheck:
-        httpGet:
-          port: 80
-          path: /up
+#      healthCheck:
+#        httpGet:
+#          port: 80
+#          path: /up
