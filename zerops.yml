@@ -5,7 +5,7 @@ zerops:
         - php@8.3
       os: alpine
       buildCommands:
-        - git clone https://github.com/laravel-filament/demo.git .
+        - git clone https://github.com/laravel-filament/demo.git ./
         - composer install
       deployFiles: ./
       cache:
