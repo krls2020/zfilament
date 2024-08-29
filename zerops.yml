@@ -10,7 +10,7 @@ zerops:
           cd filament-demo
           composer install --ignore-platform-reqs
       deployFiles:
-        - ./filament-demo
+        - ./filament-demo/.
         - site.conf.tmpl
 #      cache:
 #        - filament-demo/vendor
