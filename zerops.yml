@@ -37,11 +37,11 @@ zerops:
         APP_TIMEZONE: UTC
         APP_URL: ${zeropsSubdomain}
 
-        DB_CONNECTION: pgsql
+        DB_CONNECTION: mysql
         DB_DATABASE: db
         DB_HOST: db
         DB_PASSWORD: ${db_password}
-        DB_PORT: 5432
+        DB_PORT: 3306
         DB_USERNAME: ${db_user}
 
         LOG_CHANNEL: syslog
