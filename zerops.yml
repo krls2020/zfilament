@@ -71,11 +71,11 @@ zerops:
         BCRYPT_ROUNDS: 12
         TRUSTED_PROXIES: "*"
         FILESYSTEM_DISK: s3
-#      initCommands:
+      initCommands:
 #        - php artisan view:cache
 #        - php artisan config:cache
 #        - php artisan route:cache
-#        - php artisan migrate --isolated --force
+        - php artisan migrate --isolated --force
 #        - php artisan db:seed
 #        - php artisan optimize
 #      healthCheck:
