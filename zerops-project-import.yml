@@ -10,9 +10,6 @@ services:
     buildFromGit: https://github.com/krls2020/zfilament
     enableSubdomainAccess: true
     envSecrets:
-      APP_NAME: ZeropsLaravel
-      APP_DEBUG: true
-      APP_ENV: production
       APP_KEY: <@generateRandomString(<32>)>
 
   - hostname: db
