@@ -9,7 +9,9 @@ zerops:
           git clone https://github.com/laravel-filament/demo.git filament-demo
           cd filament-demo
           composer install --ignore-platform-reqs
-      deployFiles: ./filament-demo/
+      deployFiles:
+        - ./filament-demo/
+        - site.conf.tmpl
       cache:
         - filament-demo/vendor
         - filament-demo/composer.lock
