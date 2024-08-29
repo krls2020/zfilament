@@ -48,6 +48,8 @@ zerops:
         LOG_LEVEL: debug
         LOG_STACK: single
 
+
+
         MAIL_FROM_ADDRESS: hello@example.com
         MAIL_FROM_NAME: ZeropsLaravel
         MAIL_HOST: mailpit
