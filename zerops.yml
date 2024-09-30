@@ -38,7 +38,7 @@ zerops:
         APP_TIMEZONE: UTC
         APP_URL: ${zeropsSubdomain}
 
-        DB_CONNECTION: mysql
+        DB_CONNECTION: pgsql
         DB_DATABASE: db
         DB_HOST: db
         DB_PASSWORD: ${db_password}
