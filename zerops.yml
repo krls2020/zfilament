@@ -74,15 +74,14 @@ zerops:
         TRUSTED_PROXIES: "*"
         FILESYSTEM_DISK: s3
       initCommands:
-        - php artisan storage:link
-        - php artisan view:cache
-        - php artisan config:cache
-        - php artisan route:cache
-        - php artisan migrate --isolated --force
-        - php artisan db:seed --force
-        - php artisan optimize
-        - chown -R zerops:zerops /var/www/storage/
-        - echo "change permisions"
+#        - php artisan storage:link
+#        - php artisan view:cache
+#        - php artisan config:cache
+#        - php artisan route:cache
+#        - php artisan migrate --isolated --force
+#        - php artisan db:seed --force
+#        - php artisan optimize
+#        - chown -R zerops:zerops /var/www/storage/
 #      healthCheck:
 #        httpGet:
 #          port: 80
