@@ -25,7 +25,7 @@ zerops:
 
     run:
       base: php-nginx@8.3
-      os: alpine
+      os: ubuntu
       siteConfigPath: site.conf.tmpl
       envVariables:
         APP_NAME: ZeropsFilament
