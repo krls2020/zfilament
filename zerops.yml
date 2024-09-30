@@ -63,6 +63,15 @@ zerops:
         SESSION_LIFETIME: 120
         SESSION_PATH: /
 
+        AWS_ACCESS_KEY_ID: ${storage_accessKeyId}
+        AWS_REGION: us-east-1
+        AWS_BUCKET: ${storage_bucketName}
+        AWS_ENDPOINT: ${storage_apiUrl}
+        AWS_SECRET_ACCESS_KEY: ${storage_secretAccessKey}
+        AWS_URL: ${storage_apiUrl}/${storage_bucketName}
+        AWS_USE_PATH_STYLE_ENDPOINT: true
+
+
         BCRYPT_ROUNDS: 12
 #        TRUSTED_PROXIES: "*"
 #        FILESYSTEM_DISK: s3
