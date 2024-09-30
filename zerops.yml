@@ -73,14 +73,16 @@ zerops:
         BCRYPT_ROUNDS: 12
         TRUSTED_PROXIES: "*"
         FILESYSTEM_DISK: s3
+
       initCommands:
         - php artisan storage:link
         - php artisan view:cache
         - php artisan config:cache
         - php artisan route:cache
         - sudo -E -u zerops -- zsc execOnce ${appVersionId} -- php artisan migrate --isolated --force
-        - sudo -E -u zerops -- zsc execOnce initialize -- artisan db:seed --force
+        - sudo -E -u zerops -- zsc execOnce initialize -- php artisan db:seed --force
         - php artisan optimize
+
 #        - chown -R zerops:zerops /var/www/storage/
 #      healthCheck:
 #        httpGet:
