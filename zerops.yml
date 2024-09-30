@@ -73,12 +73,13 @@ zerops:
         TRUSTED_PROXIES: "*"
         FILESYSTEM_DISK: s3
       initCommands:
-#        - php artisan view:cache
-#        - php artisan config:cache
-#        - php artisan route:cache
+        - php artisan storage:link
+        - php artisan view:cache
+        - php artisan config:cache
+        - php artisan route:cache
         - php artisan migrate --isolated --force
         - php artisan db:seed --force
-#        - php artisan optimize
+        - php artisan optimize
 #      healthCheck:
 #        httpGet:
 #          port: 80
