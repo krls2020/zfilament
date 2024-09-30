@@ -42,7 +42,7 @@ zerops:
         DB_DATABASE: db
         DB_HOST: db
         DB_PASSWORD: ${db_password}
-        DB_PORT: 3306
+        DB_PORT: 5432
         DB_USERNAME: ${db_user}
 
         LOG_CHANNEL: syslog
