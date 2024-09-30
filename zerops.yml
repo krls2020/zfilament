@@ -1,4 +1,3 @@
-#yamlPreprocessor=on
 zerops:
   - setup: app
     build:
@@ -10,6 +9,7 @@ zerops:
           git clone https://github.com/laravel-filament/demo.git filament-demo
           cd filament-demo
           composer install --ignore-platform-reqs
+          cp ../fix/2022_06_09_155042_create_addressable_table.php ./database/migrations/
       deployFiles:
         - ./filament-demo/~
         - site.conf.tmpl
