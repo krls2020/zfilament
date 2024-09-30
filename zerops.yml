@@ -1,4 +1,3 @@
-#yamlPreprocessor=on
 zerops:
   - setup: app
     build:
@@ -15,21 +14,19 @@ zerops:
       deployFiles:
         - ./filament-demo/~
         - site.conf.tmpl
-#      cache:
-#        - filament-demo/vendor
-#        - filament-demo/composer.lock
-#    deploy:
-#      readinessCheck:
-#        httpGet:
-#          port: 80
-#          path: /up
+      cache:
+        - filament-demo/vendor
+        - filament-demo/composer.lock
+    deploy:
+      readinessCheck:
+        httpGet:
+          port: 80
+          path: /up
 
     run:
       base: php-nginx@8.3
       os: ubuntu
       siteConfigPath: site.conf.tmpl
-      envSecrets:
-        APP_KEY: <@generateRandomString(<32>)>
       envVariables:
         APP_NAME: ZeropsFilament
         APP_DEBUG: true
@@ -72,8 +69,8 @@ zerops:
         SESSION_PATH: /
 
         BCRYPT_ROUNDS: 12
-        TRUSTED_PROXIES: "*"
-        FILESYSTEM_DISK: s3
+#        TRUSTED_PROXIES: "*"
+#        FILESYSTEM_DISK: s3
 
       initCommands:
         - php artisan storage:link
@@ -83,9 +80,7 @@ zerops:
         - sudo -E -u zerops -- zsc execOnce ${appVersionId} -- php artisan migrate --isolated --force
         - sudo -E -u zerops -- zsc execOnce initialize -- php artisan db:seed --force
         - php artisan optimize
-
-#        - chown -R zerops:zerops /var/www/storage/
-#      healthCheck:
-#        httpGet:
-#          port: 80
-#          path: /up
+      healthCheck:
+        httpGet:
+          port: 80
+          path: /up
