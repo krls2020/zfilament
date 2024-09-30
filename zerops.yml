@@ -73,7 +73,7 @@ zerops:
 
         BCRYPT_ROUNDS: 12
 #        TRUSTED_PROXIES: "*"
-#        FILESYSTEM_DISK: s3
+        FILESYSTEM_DISK: s3
 
       initCommands:
         - php artisan storage:link
