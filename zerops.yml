@@ -17,11 +17,6 @@ zerops:
       cache:
         - filament-demo/vendor
         - filament-demo/composer.lock
-    deploy:
-      readinessCheck:
-        httpGet:
-          port: 80
-          path: /up
 
     run:
       base: php-nginx@8.3
