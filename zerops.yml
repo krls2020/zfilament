@@ -1,3 +1,4 @@
+#yamlPreprocessor=on
 zerops:
   - setup: app
     build:
@@ -27,6 +28,8 @@ zerops:
       base: php-nginx@8.3
       os: ubuntu
       siteConfigPath: site.conf.tmpl
+      envSecrets:
+        APP_KEY: <@generateRandomString(<32>)>
       envVariables:
         APP_NAME: ZeropsFilament
         APP_DEBUG: true
@@ -49,8 +52,6 @@ zerops:
         LOG_CHANNEL: syslog
         LOG_LEVEL: debug
         LOG_STACK: single
-
-
 
         MAIL_FROM_ADDRESS: hello@example.com
         MAIL_FROM_NAME: ZeropsLaravel
