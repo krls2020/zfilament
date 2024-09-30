@@ -10,6 +10,7 @@ zerops:
           cd filament-demo
           composer install --ignore-platform-reqs
           cp ../fix/2022_06_09_155042_create_addressable_table.php ./database/migrations/
+          cp ../fix/2022_09_10_131605_create_notifications_table.php ./database/migrations/
       deployFiles:
         - ./filament-demo/~
         - site.conf.tmpl
