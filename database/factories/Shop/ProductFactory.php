@@ -44,7 +44,7 @@ class ProductFactory extends Factory
                 $product
                     ->addMedia(LocalImages::getRandomFile())
                     ->preservingOriginal()
-                    ->toMediaCollection('product-images');
+                    ->toMediaCollection('product-images', 's3');
             } catch (UnreachableUrl $exception) {
                 return;
             }
