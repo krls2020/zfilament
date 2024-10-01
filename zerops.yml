@@ -4,29 +4,17 @@ zerops:
       base:
         - php@8.3
       os: alpine
-
       buildCommands:
         - composer install --ignore-platform-reqs
       deployFiles: ./
       cache:
         - vendor
         - composer.lock
-
-#      buildCommands:
-#        - |
-#          git clone https://github.com/laravel-filament/demo.git filament-demo
-#          cd filament-demo
-#          cp ../fix/2022_06_09_155042_create_addressable_table.php ./database/migrations/ # for pgsql compatibility
-#          cp ../fix/2022_09_10_131605_create_notifications_table.php ./database/migrations/ # for pgsql compatibility
-#          cp ../fix/CanCreateImages.php ./database/factories/Concerns/ # force s3 migration
-#          composer install --ignore-platform-reqs
-#      deployFiles:
-#        - ./filament-demo/~
-#        - site.conf.tmpl
-#      cache:
-#        - filament-demo/vendor
-#        - filament-demo/composer.lock
-
+    deploy:
+      readinessCheck:
+        httpGet:
+          port: 80
+          path: /up
     run:
       base: php-nginx@8.3
 #      os: ubuntu
@@ -86,7 +74,6 @@ zerops:
         FILAMENT_FILESYSTEM_DISK: s3
 
       initCommands:
-#        - php artisan storage:link
         - php artisan view:cache
         - php artisan config:cache
         - php artisan route:cache
