@@ -61,13 +61,13 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Shop categories created.');
 
         $this->command->warn(PHP_EOL . 'Creating shop customers...');
-        $customers = $this->withProgressBar(500, fn () => Customer::factory(1)
+        $customers = $this->withProgressBar(100, fn () => Customer::factory(1)
             ->has(Address::factory()->count(rand(1, 3)))
             ->create());
         $this->command->info('Shop customers created.');
 
         $this->command->warn(PHP_EOL . 'Creating shop products...');
-        $products = $this->withProgressBar(50, fn () => Product::factory(1)
+        $products = $this->withProgressBar(30, fn () => Product::factory(1)
             ->sequence(fn ($sequence) => ['shop_brand_id' => $brands->random(1)->first()->id])
             ->hasAttached($categories->random(rand(3, 6)), ['created_at' => now(), 'updated_at' => now()])
             ->has(
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Shop products created.');
 
         $this->command->warn(PHP_EOL . 'Creating orders...');
-        $orders = $this->withProgressBar(500, fn () => Order::factory(1)
+        $orders = $this->withProgressBar(200, fn () => Order::factory(1)
             ->sequence(fn ($sequence) => ['shop_customer_id' => $customers->random(1)->first()->id])
             ->has(Payment::factory()->count(rand(1, 3)))
             ->has(
