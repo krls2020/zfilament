@@ -93,3 +93,7 @@ zerops:
         - sudo -E -u zerops -- zsc execOnce ${appVersionId} -- php artisan migrate --isolated --force
         - sudo -E -u zerops -- zsc execOnce initialize -- php artisan db:seed --force
         - php artisan optimize
+      healthCheck:
+        httpGet:
+          port: 80
+          path: /up
