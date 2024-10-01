@@ -6,7 +6,7 @@ zerops:
       os: alpine
 
       buildCommands:
-        - composer install --optimize-autoloader --no-dev
+        - composer install --ignore-platform-reqs
       deployFiles: ./
       cache:
         - vendor
