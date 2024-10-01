@@ -4,20 +4,28 @@ zerops:
       base:
         - php@8.3
       os: alpine
+
       buildCommands:
-        - |
-          git clone https://github.com/laravel-filament/demo.git filament-demo
-          cd filament-demo
-          cp ../fix/2022_06_09_155042_create_addressable_table.php ./database/migrations/ # for pgsql compatibility
-          cp ../fix/2022_09_10_131605_create_notifications_table.php ./database/migrations/ # for pgsql compatibility
-          cp ../fix/CanCreateImages.php ./database/factories/Concerns/ # force s3 migration
-          composer install --ignore-platform-reqs
-      deployFiles:
-        - ./filament-demo/~
-        - site.conf.tmpl
+        - composer install --optimize-autoloader --no-dev
+      deployFiles: ./
       cache:
-        - filament-demo/vendor
-        - filament-demo/composer.lock
+        - vendor
+        - composer.lock
+
+#      buildCommands:
+#        - |
+#          git clone https://github.com/laravel-filament/demo.git filament-demo
+#          cd filament-demo
+#          cp ../fix/2022_06_09_155042_create_addressable_table.php ./database/migrations/ # for pgsql compatibility
+#          cp ../fix/2022_09_10_131605_create_notifications_table.php ./database/migrations/ # for pgsql compatibility
+#          cp ../fix/CanCreateImages.php ./database/factories/Concerns/ # force s3 migration
+#          composer install --ignore-platform-reqs
+#      deployFiles:
+#        - ./filament-demo/~
+#        - site.conf.tmpl
+#      cache:
+#        - filament-demo/vendor
+#        - filament-demo/composer.lock
 
     run:
       base: php-nginx@8.3
@@ -73,7 +81,6 @@ zerops:
         AWS_USE_PATH_STYLE_ENDPOINT: true
 
         BCRYPT_ROUNDS: 12
-#        TRUSTED_PROXIES: "*"
         FILESYSTEM_DISK: s3
         FILAMENT_FILESYSTEM_DISK: s3
 
