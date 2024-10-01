@@ -8,10 +8,10 @@ zerops:
         - |
           git clone https://github.com/laravel-filament/demo.git filament-demo
           cd filament-demo
-          composer install --ignore-platform-reqs
           cp ../fix/2022_06_09_155042_create_addressable_table.php ./database/migrations/ # for pgsql compatibility
           cp ../fix/2022_09_10_131605_create_notifications_table.php ./database/migrations/ # for pgsql compatibility
           cp ../fix/CanCreateImages.php ./database/factories/Concerns/ # force s3 migration
+          composer install --ignore-platform-reqs
       deployFiles:
         - ./filament-demo/~
         - site.conf.tmpl
