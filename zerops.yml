@@ -9,8 +9,9 @@ zerops:
           git clone https://github.com/laravel-filament/demo.git filament-demo
           cd filament-demo
           composer install --ignore-platform-reqs
-          cp ../fix/2022_06_09_155042_create_addressable_table.php ./database/migrations/
-          cp ../fix/2022_09_10_131605_create_notifications_table.php ./database/migrations/
+          cp ../fix/2022_06_09_155042_create_addressable_table.php ./database/migrations/ # for pgsql compatibility
+          cp ../fix/2022_09_10_131605_create_notifications_table.php ./database/migrations/ # for pgsql compatibility
+          cp ../fix/CanCreateImages.php ./database/factories/Concerns/ # force s3 migration
       deployFiles:
         - ./filament-demo/~
         - site.conf.tmpl
@@ -37,9 +38,9 @@ zerops:
         DB_CONNECTION: pgsql
         DB_DATABASE: db
         DB_HOST: db
+        DB_USERNAME: ${db_user}
         DB_PASSWORD: ${db_password}
         DB_PORT: 5432
-        DB_USERNAME: ${db_user}
 
         LOG_CHANNEL: syslog
         LOG_LEVEL: debug
@@ -74,6 +75,7 @@ zerops:
         BCRYPT_ROUNDS: 12
 #        TRUSTED_PROXIES: "*"
         FILESYSTEM_DISK: s3
+        FILAMENT_FILESYSTEM_DISK: s3
 
       initCommands:
         - php artisan storage:link
