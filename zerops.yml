@@ -85,7 +85,7 @@ zerops:
         FILAMENT_FILESYSTEM_DISK: s3
 
       initCommands:
-        - php artisan storage:link
+#        - php artisan storage:link
         - php artisan view:cache
         - php artisan config:cache
         - php artisan route:cache

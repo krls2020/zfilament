@@ -38,3 +38,9 @@ services:
     objectStoragePolicy: public-read
     priority: 10
 
+  - hostname: s3browser
+    type: php-nginx@8.3
+    buildFromGit: https://github.com/krls2020/s3browser
+    enableSubdomainAccess: true
+    envSecrets:
+      APP_KEY: <@generateRandomString(<32>)>
