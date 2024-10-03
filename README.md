@@ -1,102 +1,68 @@
-# Filament Demo App
+# Zerops x Filament
 
-A demo application to illustrate how Filament Admin works.
+WORK IN PROGRESS
 
-![Filament Demo](https://github.com/filamentphp/demo/assets/171715/899161a9-3c85-4dc9-9599-13928d3a4412)
+[Filament](https://filamentphp.com) is a collection of beautiful full-stack components. This recipe showcasing how to run production version in Zerops. It's based on [Filament Demo](https://github.com/filamentphp/demo) and 
+icludes all the advanced functionality — session and cache
+stored in Redis and files stored in Object Storage, this makes it perfectly suitable for production of any size.
 
-[Open in Gitpod](https://gitpod.io/#https://github.com/filamentphp/demo) to edit it and preview your changes with no setup required.
+<br/>
 
-## Installation
+## Deploy on Zerops
 
-Clone the repo locally:
+You can either click the deploy button to deploy directly on Zerops, or manually copy
+the [import yaml](https://github.com/zeropsio/recipe-laravel-jetstream/blob/main/zerops-project-import.yml) to the
+import dialog in the Zerops app.
 
-```sh
-git clone https://github.com/laravel-filament/demo.git filament-demo && cd filament-demo
-```
+[![Deploy on Zerops](https://github.com/zeropsio/recipe-shared-assets/blob/main/deploy-button/green/deploy-button.svg)](https://app.zerops.io/recipe/laravel)
 
-Install PHP dependencies:
+<br/>
 
-```sh
-composer install
-```
+## Recipe features
 
-Setup configuration:
+- Filament running on a load balanced **Zerops PHP + Nginx** service
+- Zerops **PostgreSQL 16** service as database
+- Zerops KeyDB (**Redis**) service for session and cache
+- Zerops **Object Storage** (S3 compatible) service as file system
+- Proper setup for Laravel **cache**, **optimization**, and **database migrations**
+- Logs set up to use **syslog** and accessible through Zerops GUI
+- Utilization of Zerops built-in **environment variables** system
 
-```sh
-cp .env.example .env
-```
+[//]: # (- [Mailpit]&#40;https://github.com/axllent/mailpit&#41; as **SMTP mock server**)
+[//]: # (- [Adminer]&#40;https://www.adminer.org&#41; for **quick database management** tool)
 
-Generate application key:
+<br/>
 
-```sh
-php artisan key:generate
-```
+## Production vs. development
 
-Create an SQLite database. You can also use another database (MySQL, Postgres), simply update your configuration accordingly.
+Base of the recipe is ready for production, the difference comes down to:
 
-```sh
-touch database/database.sqlite
-```
+- Use highly available version of the PostgreSQL database (change `mode` from `NON_HA` to `HA` in recipe YAML, `db`
+  service section)
+- Use at least two containers for Jetstream service to achieve high reliability and resilience (add `minContainers: 2`
+  in recipe YAML, `app` service section)
+- Use production-ready third-party SMTP server instead of Mailpit (change `MAIL_` secret variables in recipe YAML `app`
+  service)
+- Disable public access to Adminer or remove it altogether (remove service `adminer` from recipe YAML)
 
-Run database migrations:
+<br/>
 
-```sh
-php artisan migrate
-```
+## Changes made over the default installation
 
-Run database seeder:
+If you want to modify your existing Filament app to efficiently run on Zerops, these are the general steps we
+took:
 
-```sh
-php artisan db:seed
-```
+- Add [zerops.yml](https://github.com/zeropsio/recipe-filament/blob/main/zerops.yml) to your repository, our
+  example includes idempotent migrations, caching, and optimized build process
+- Setup health check. From Laravel 11 is by default setup by framework.
+- Add [league/flysystem-aws-s3-v3](https://github.com/zeropsio/recipe-filament/blob/main/composer.json#L14) to
+  your composer.json to support Object Storage file system
+- Utilize
+  Zerops [environment variables](https://github.com/zeropsio/recipe-filament/blob/main/zerops.yml#L25-L75)
+  and [secrets](https://github.com/zeropsio/recipe-filament/blob/main/zerops-project-import.yml#L12-L16) to
+  setup S3 for file system, Redis for cache and sessions, and trusted proxies to work with reverse proxy load balancer
 
-> **Note**  
-> If you get an "Invalid datetime format (1292)" error, this is probably related to the timezone setting of your database.  
-> Please see https://dba.stackexchange.com/questions/234270/incorrect-datetime-value-mysql
+<br/>
+<br/>
 
-
-Create a symlink to the storage:
-
-```sh
-php artisan storage:link
-```
-
-Run the dev server (the output will give the address):
-
-```sh
-php artisan serve
-```
-
-You're ready to go! Visit the url in your browser, and login with:
-
--   **Username:** admin@filamentphp.com
--   **Password:** password
-
-## Features to explore
-
-### Relations
-
-#### BelongsTo
-- ProductResource
-- OrderResource
-- PostResource
-
-#### BelongsToMany
-- CategoryResource\RelationManagers\ProductsRelationManager
-
-#### HasMany
-- OrderResource\RelationManagers\PaymentsRelationManager
-
-#### HasManyThrough
-- CustomerResource\RelationManagers\PaymentsRelationManager
-
-#### MorphOne
-- OrderResource -> Address
-
-#### MorphMany
-- ProductResource\RelationManagers\CommentsRelationManager
-- PostResource\RelationManagers\CommentsRelationManager
-
-#### MorphToMany
-- BrandResource\RelationManagers\AddressRelationManager
-- CustomerResource\RelationManagers\AddressRelationManager
+Need help setting your project up? Join [Zerops Discord community](https://discord.com/invite/WDvCZ54).
