@@ -1,6 +1,6 @@
 # Zerops x Filament
 
-WORK IN PROGRESS
+WORK IN PROGRESS - development enviroment
 
 [Filament](https://filamentphp.com) is a collection of beautiful full-stack components. This recipe showcasing how to run production version in Zerops. It's based on [Filament Demo](https://github.com/filamentphp/demo) and 
 icludes all the advanced functionality — session and cache
